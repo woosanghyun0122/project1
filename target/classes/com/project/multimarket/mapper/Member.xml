@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="Member">
+
+<select id="Member_isDuplicate" parameterType="MemberDto" resultType="Integer">
+		select count(*) from member2
+		where userid=#{userid}
+	
+</select>
+
+<insert id="Member_insert" parameterType="MemberDto" resultType="MemberDto">
+INSERT INTO member2
+(
+	userid,
+	pw,
+	username,
+	phone,
+	email,
+	birthday,
+	zipcode,
+	address
+)
+VALUES
+(
+	#{userid},
+	#{pw},
+	#{username},
+	#{phone},
+	#{email},
+	#{birthday},
+	#{zipcode},
+	#{address}
+)
+
+</insert>
+
+<select id="Member_getInfo" parameterType="MemberDto" resultType="MemberDto">
+	select
+		id
+		,A.userid
+		,A.pw
+		,A.username
+		,A.phone
+		,A.email
+		,A.birthday
+		,A.zipcode
+		,A.address
+	from member2 A
+	where userid=#{userid}
+</select>
+
+<select id="Member_findid" parameterType="MemberDto" resultType="MemberDto">
+	select
+		id
+		,userid
+		,pw
+		,username
+		,phone
+		,email
+	from member2 
+	where username=#{username} and phone=#{phone} and email=#{email}
+		
+</select>
+
+<select id="Member_findpw" parameterType="MemberDto" resultType="MemberDto">
+	select
+		id
+		,A.userid
+		,A.pw
+		,A.username
+		,A.phone
+		,A.email
+		,A.birthday
+		,A.zipcode
+		,A.address
+	from member2 A
+	where userid=#{userid} and username=#{username} and phone=#{phone}
+		
+</select>
+
+<update id="Member_update" parameterType="MemberDto">
+	update member set pw=#{pw}
+					,email=#{email}
+					,phone=#{phone}
+					,zipcode=#{zipcode}
+					,address=#{address}
+	where userid=#{userid}
+</update>
+
+
+</mapper>
