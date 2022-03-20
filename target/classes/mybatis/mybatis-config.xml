@@ -3,13 +3,21 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<!--  <typeAliases>
-    	<typeAlias alias="MemberDto" type="com.project.multimarket.MemberDto"/>	
+	  <typeAliases>
+    	<typeAlias alias="MemberDto" type="com.project.multimarket.member.MemberDto"/>	
+  		<typeAlias alias="ProductDto" type="com.project.multimarket.product.ProductDto"/>	
+  		<typeAlias alias="CartDto" type="com.project.multimarket.cart.CartDto"/>	
+  		<typeAlias alias="FavoriteDto" type="com.project.multimarket.favorite.FavoriteDto"/>	
+    	
 	</typeAliases>
 
 	<mappers>
-		<mapper resource=	"/com/project/multimarket/mapper/Member.xml"/>
+		<mapper resource="/com/project/multimarket/mapper/Member.xml"/>
+		<mapper resource="/com/project/multimarket/mapper/Product.xml"/>
+		<mapper resource="/com/project/multimarket/mapper/Cart.xml"/>
+		<mapper resource="/com/project/multimarket/mapper/Favorite.xml"/>
+
 	</mappers>
--->
+
 	
 </configuration>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Cart">
+ 
+ 
+ <insert id="Favorite_insert" parameterType="FavoriteDto">
+	INSERT INTO favorite(
+		userid, 
+		product_num
+	)VALUES(
+		#{userid},
+		#{product_num}
+	)
+
+</insert>
+
+<select id="Favorite_getList" parameterType="FavoriteDto" resultType="FavoriteDto">
+		select
+			f.favorite_id AS favorite_id,
+			f.userid AS userid,
+			p.num AS product_num,
+			p.name AS product_name,
+			p.brand AS product_brand,
+            p.image AS product_image,
+			p.price AS price
+		FROM
+			member2 m, product p, favorite f
+		where
+			m.userid = f.userid
+			AND p.num = f.product_num
+			AND f.userid=#{userid}
+		
+</select>
+
+<select id="Favorite_getTotal" parameterType="FavoriteDto" resultType="Integer">
+		select count(*) from favorite where userid=#{userid}	
+</select>
+
+<select id="Favorite_isDuplicate" parameterType="FavoriteDto" resultType="Integer">
+		select count(*) from favorite
+		where product_num=#{product_num} and userid=#{userid}
+	
+</select>
+
+<delete id="Favorite_delete" parameterType="String">
+	DELETE FROM favorite
+	WHERE favorite_id=#{favorite_id}
+
+</delete>
+
+<delete id="Favorite_deleteall" parameterType="String">
+	DELETE FROM favorite
+	WHERE userid=#{userid}
+
+</delete>
+
+ 
+ </mapper>

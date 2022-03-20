@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="Product">
+
+	<!-- 쿼리를 xml로 작성하고 id:식별값  
+		  parameterType:우리가 전달할값 
+	     resultType : 받아오는값  -->
+	     
+	<!-- if test="key=='1'"  - 이렇게 쓰면 안된다 인식안된다 -->
+	
+	<select id="Product_getList"  parameterType="ProductDto"  resultType="ProductDto">
+ 		
+ 		select 
+ 			A.num
+ 			,A.name
+ 			,A.brand
+ 			,A.sex
+ 			,A.price
+ 			,A.image
+ 			,A.sale
+ 			,A.in_date
+ 			,A.quantity
+ 			,A.wdate
+ 		from product A where sex=#{sex} or sale=#{sale}
+ 	</select>
+
+
+	
+	<select id="Product_getTotal" parameterType="ProductDto" resultType="Integer">
+		select count(if(sex=#{sex},sex,null)) from product
+		
+	</select>
+	
+	<select id="Product_getBrandTotal" parameterType="ProductDto" resultType="Integer">
+		select count(if(brand=#{brand},brand,null)) from product
+		
+	</select>
+	
+		<select id="Product_getSaleTotal" parameterType="ProductDto" resultType="Integer">
+		select count(if(sale=#{sale},sale,null)) from product
+		
+	</select>
+	
+	<select id="Product_getView" parameterType="String" resultType="ProductDto">
+		select
+			A.num
+			,A.name
+			,A.brand
+			,A.sex
+			,A.price
+			,A.image
+			,A.sale
+			,A.in_date
+			,A.wdate
+			,A.quantity
+		from product A where num=#{num}
+	</select>
+	
+	<select id="Product_brand" parameterType="ProductDto" resultType="ProductDto">
+		select
+			A.num
+			,A.name
+			,A.brand
+			,A.sex
+			,A.price
+			,A.image
+			,A.sale
+			,A.in_date
+			,A.wdate
+			,A.quantity
+		from product A where brand=#{brand}
+	</select>
+	
+	<select id="Product_getRelatedItems" parameterType="ProductDto" resultType="ProductDto">
+		
+		select
+			A.num
+			,A.name
+			,A.brand
+			,A.sex
+			,A.price
+			,A.image
+			,A.sale
+			,A.in_date
+			,A.wdate
+			,A.quantity
+		from product A order by rand() limit 4;
+
+		
+	</select>
+	
+		<select id="Product_main" parameterType="ProductDto" resultType="ProductDto">
+		
+		select
+			A.num
+			,A.name
+			,A.brand
+			,A.sex
+			,A.price
+			,A.image
+			,A.sale
+			,A.in_date
+			,A.wdate
+			,A.quantity
+		from product A order by rand() limit 4;
+
+		
+	</select>
+	
+	
+</mapper>

@@ -67,9 +67,12 @@ public class MemberDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
 	
+	@Override
+	public String toString() {
+		return "MemberDto [id=" + id + ", userid=" + userid + ", phone=" + phone + ", pw=" + pw + ", username="
+				+ username + ", birthday=" + birthday + ", zipcode=" + zipcode + ", address=" + address + ", email="
+				+ email + "]";
+	}
 
 }

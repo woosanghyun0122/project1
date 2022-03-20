@@ -15,6 +15,8 @@ public class MemberDaoImpl implements MemberDao{
 
 		int cnt = sm.selectOne("Member_isDuplicate",dto);
 		
+		System.out.println(cnt);
+		
 		if(cnt==0) {
 			return false;
 		}
@@ -25,7 +27,7 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public void member_insert(MemberDto dto) {
-		
+		System.out.println("회원가입2");
 		sm.insert("Member_insert",dto);
 		
 	}

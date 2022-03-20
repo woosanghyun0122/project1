@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 
 <mapper namespace="Member">
 
@@ -8,7 +10,7 @@
 	
 </select>
 
-<insert id="Member_insert" parameterType="MemberDto" resultType="MemberDto">
+<insert id="Member_insert" parameterType="MemberDto">
 INSERT INTO member2
 (
 	userid,
@@ -79,13 +81,15 @@ VALUES
 </select>
 
 <update id="Member_update" parameterType="MemberDto">
-	update member set pw=#{pw}
+	update member2 set pw=#{pw}
 					,email=#{email}
 					,phone=#{phone}
 					,zipcode=#{zipcode}
+					,birthday=#{birthday}
 					,address=#{address}
 	where userid=#{userid}
 </update>
+
 
 
 </mapper>

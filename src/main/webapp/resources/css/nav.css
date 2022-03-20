@@ -43,22 +43,12 @@ header #head_link li {
     border-right:1px solid #999; 
 }   
 
-header #search {
-    margin:0; /* 마진 0 */
-    padding:0; /* 패딩 0 */
-    margin-top:20px;
-   
-}
-
 header #search .main_input {
-    width:260px; 
-    height:22px; 
-    border:#ffffff 3px solid; 
-    text-align: cetner;
-    magin-left:500px;
-    padding:0 5px;
-    padding-left:400px; 
-   	float: left;
+	float: left;
+	margin-right:0px;
+	width:325px;
+	outline: none;
+	padding-right:20%;
     }
     header #search .btn1 {
     background-color:rgb(1, 1, 2); 
@@ -67,6 +57,7 @@ header #search .main_input {
     height:28px; 
     width:15px; 
     margin-left:2px;
+    outline: none;
     float:right;
     } 
 
@@ -74,6 +65,17 @@ header #search .main_input {
     width:995px;
     margin:0 auto;
     padding:0;
+}
+
+#bar{
+	list-style:none;
+	float: left;
+	width: 100%;
+	line-height:10px;
+	text-align:center;
+	background:#DC143C;
+
+
 }
 
 

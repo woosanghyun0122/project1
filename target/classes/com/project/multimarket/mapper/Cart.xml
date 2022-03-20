@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="Cart">
+
+<!-- 장바구니 추가 -->
+
+<insert id="Cart_insert" parameterType="CartDto">
+	INSERT INTO cart(
+		userid, 
+		product_num,
+		amount,
+		size
+	)VALUES(
+		#{userid},
+		#{product_num},
+		#{amount},
+		#{size}
+	)
+
+</insert>
+
+
+
+<select id="Cart_getList" parameterType="CartDto" resultType="CartDto">
+		select
+			c.cart_id AS cart_id,
+			c.userid AS userid,
+			p.num AS product_num,
+			p.name AS product_name,
+            p.image AS product_image,
+            p.quantity AS product_quantity,
+			c.amount,
+			c.size,
+			p.price AS price
+		FROM
+			member2 m, product p, cart c
+		where
+			m.userid = c.userid
+			AND p.num = c.product_num
+			AND c.userid=#{userid}
+		
+</select>
+
+<update id="Cart_modify">
+
+	UPDATE cart
+	SET amount=#{amount}
+	where userid=#{userid}
+	AND product_num=#{product_num}
+
+</update>
+
+<delete id="Cart_delete" parameterType="String">
+	DELETE FROM cart
+	WHERE cart_id=#{cart_id}
+
+</delete>
+
+<delete id="Cart_deleteall">
+	DELETE FROM cart
+	WHERE userid=#{userid}
+
+</delete>
+
+<update id="Cart_update">
+	UPDATE cart
+	SET amount=amount+#{amount}
+	WHERE userid=#{userid}
+	AND product_num=#{product_num}
+	
+</update>
+
+
+<select id="Cart_count" parameterType="cartDto" resultType="Integer">
+	select count(*)
+	from cart
+	where userid=#{userid}
+	and product_num=#{product_num}
+	and size=#{size}
+
+</select>
+
+
+
+</mapper>
